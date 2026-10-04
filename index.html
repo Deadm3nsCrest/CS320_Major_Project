@@ -1,0 +1,94 @@
+const form = document.getElementById('registryForm');
+const saveButton = document.getElementById('saveButton');
+const formMessage = document.getElementById('formMessage');
+const villageCards = document.querySelectorAll('.village-card');
+const tribeButtons = document.querySelectorAll('.tribe-item');
+
+const requiredFields = [
+  document.getElementById('fullName'),
+  document.getElementById('age'),
+  document.getElementById('clan'),
+  document.getElementById('nid'),
+  document.getElementById('dob')
+];
+
+function validateField(field) {
+  const value = field.value.trim();
+
+  if (field.hasAttribute('required') && !value) {
+    field.style.borderColor = 'rgba(255, 90, 95, 0.9)';
+    return false;
+  }
+
+  if (field.id === 'age') {
+    const ageValue = Number(value);
+    if (Number.isNaN(ageValue) || ageValue < 18 || ageValue > 120) {
+      field.style.borderColor = 'rgba(255, 90, 95, 0.9)';
+      return false;
+    }
+  }
+
+  if (field.id === 'nid' && value.length < 6) {
+    field.style.borderColor = 'rgba(255, 90, 95, 0.9)';
+    return false;
+  }
+
+  field.style.borderColor = 'rgba(120, 199, 160, 0.32)';
+  return true;
+}
+
+function checkFormValidity() {
+  const valid = requiredFields.every(validateField);
+  saveButton.disabled = !valid;
+  return valid;
+}
+
+requiredFields.forEach((field) => {
+  field.addEventListener('input', checkFormValidity);
+  field.addEventListener('change', checkFormValidity);
+});
+
+villageCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    villageCards.forEach((item) => item.classList.remove('selected'));
+    card.classList.add('selected');
+  });
+});
+
+tribeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    tribeButtons.forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+  });
+});
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  if (!checkFormValidity()) {
+    formMessage.textContent = 'Please complete all required fields before saving.';
+    formMessage.className = 'form-message error';
+    return;
+  }
+
+  const formData = new FormData(form);
+  const record = Object.fromEntries(formData.entries());
+
+  formMessage.textContent = `Resident "${record.fullName}" has been added successfully to ${record.clan}.`;
+  formMessage.className = 'form-message success';
+  form.reset();
+  saveButton.disabled = true;
+});
+
+form.addEventListener('reset', () => {
+  setTimeout(() => {
+    formMessage.textContent = '';
+    formMessage.className = 'form-message';
+    requiredFields.forEach((field) => {
+      field.style.borderColor = 'rgba(120, 199, 160, 0.32)';
+    });
+    checkFormValidity();
+  }, 0);
+});
+
+checkFormValidity();

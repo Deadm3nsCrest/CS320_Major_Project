@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ward Registry System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="top-bar">
+        <div class="brand-block">
+          <div class="brand-mark">W</div>
+          <h1 class="brand-name">Ward Registry System</h1>
+        </div>
+        <nav class="top-nav" aria-label="Main navigation">
+          <a href="#villages">Villages</a>
+          <a href="#tribes">Tribes</a>
+          <a href="#registry">Registry</a>
+          <a href="#reports">Reports</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <p class="eyebrow">Community Identity & Voter Eligibility</p>
+            <h2>Register, verify and manage residents by Village, Tribe and Clan.</h2>
+            <p>
+              A transparent civil registry solution designed to help election committees and local leaders maintain accurate records for eligible voters.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-btn" type="button">View Registry</button>
+              <button class="secondary-btn" type="button">Download Report</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="villages" class="section-block">
+          <div class="section-heading">
+            <p class="section-tag">Villages</p>
+            <h3>Community Listings</h3>
+          </div>
+
+          <div class="village-grid">
+            <article class="village-card selected" data-village="Kampala Central">
+              <div class="card-header">
+                <span class="village-badge">Village 01</span>
+                <span class="status-dot"></span>
+              </div>
+              <h4>Kampala Central</h4>
+              <p>
+                A vibrant urban settlement with strong cultural traditions, active community leadership, and a highly connected administrative center.
+              </p>
+            </article>
+
+            <article class="village-card" data-village="Lakeview Hills">
+              <div class="card-header">
+                <span class="village-badge">Village 02</span>
+                <span class="status-dot"></span>
+              </div>
+              <h4>Lakeview Hills</h4>
+              <p>
+                Nestled near fertile water bodies, the village is known for agricultural resilience, clan solidarity, and seasonal ceremonial gatherings.
+              </p>
+            </article>
+
+            <article class="village-card" data-village="Green Valley">
+              <div class="card-header">
+                <span class="village-badge">Village 03</span>
+                <span class="status-dot"></span>
+              </div>
+              <h4>Green Valley</h4>
+              <p>
+                Famous for its rolling landscapes, farming traditions, and close-knit tribal structures that preserve heritage and lineage.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="tribes" class="section-block">
+          <div class="section-heading">
+            <p class="section-tag">Tribes</p>
+            <h3>Registered Tribes</h3>
+          </div>
+
+          <div class="tribe-list">
+            <button type="button" class="tribe-item active" data-tribe="Masaai Clan">
+              <span>Masaai Clan</span>
+              <small>Known for strong leadership and pastoral traditions.</small>
+            </button>
+            <button type="button" class="tribe-item" data-tribe="Oromo District">
+              <span>Oromo District</span>
+              <small>Recognized for ancestral values and communal governance.</small>
+            </button>
+            <button type="button" class="tribe-item" data-tribe="Nubian Community">
+              <span>Nubian Community</span>
+              <small>Associated with long-standing settlement history and civic participation.</small>
+            </button>
+            <button type="button" class="tribe-item" data-tribe="Akan Union">
+              <span>Akan Union</span>
+              <small>Respected for social structure, heritage, and cultural continuity.</small>
+            </button>
+          </div>
+        </section>
+
+        <section id="registry" class="section-block registry-panel">
+          <div class="section-heading compact">
+            <p class="section-tag">Registration</p>
+            <h3>Resident Registry Form</h3>
+          </div>
+
+          <form id="registryForm" novalidate>
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="fullName">Full Name <span class="required-mark">*</span></label>
+                <input id="fullName" name="fullName" type="text" placeholder="Enter full name" required />
+              </div>
+
+              <div class="field-group">
+                <label for="age">Age <span class="required-mark">*</span></label>
+                <input id="age" name="age" type="number" min="18" max="120" placeholder="Enter age" required />
+              </div>
+
+              <div class="field-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                  <option value="">Select gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="clan">Clan <span class="required-mark">*</span></label>
+                <input id="clan" name="clan" type="text" placeholder="Clan name" required />
+              </div>
+
+              <div class="field-group">
+                <label for="nid">NID Number <span class="required-mark">*</span></label>
+                <input id="nid" name="nid" type="text" placeholder="National ID" required />
+              </div>
+
+              <div class="field-group">
+                <label for="dob">Date of Birth <span class="required-mark">*</span></label>
+                <input id="dob" name="dob" type="date" required />
+              </div>
+
+              <div class="field-group full-width">
+                <label for="address">Address</label>
+                <input id="address" name="address" type="text" placeholder="Residential address" />
+              </div>
+
+              <div class="field-group full-width">
+                <label for="occupation">Occupation</label>
+                <input id="occupation" name="occupation" type="text" placeholder="Occupation / employment" />
+              </div>
+
+              <div class="field-group full-width">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="Additional information or special case notes"></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button id="saveButton" class="primary-btn" type="submit" disabled>Save Resident</button>
+              <button class="secondary-btn" type="reset">Clear</button>
+            </div>
+
+            <div id="formMessage" class="form-message" aria-live="polite"></div>
+          </form>
+        </section>
+
+        <section id="reports" class="section-block report-card">
+          <div class="section-heading compact">
+            <p class="section-tag">Summary</p>
+            <h3>Registry Insights</h3>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-box">
+              <strong>1,245</strong>
+              <span>Residents Registered</span>
+            </div>
+            <div class="stat-box">
+              <strong>18</strong>
+              <span>Active Clans</span>
+            </div>
+            <div class="stat-box">
+              <strong>96%</strong>
+              <span>Completion Rate</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-pattern"></div>
+        <div class="footer-content">
+          <p>Ward Registry System</p>
+          <span>Secure records • Trusted community data • Voter readiness</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
